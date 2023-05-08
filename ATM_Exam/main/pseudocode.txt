@@ -1,0 +1,221 @@
+Import csv
+
+FUNCTION startProgram()
+    WRITE "Please enter your User ID"
+    INPUT userIDInput { global variable }
+
+FUNCTION globalOption
+    INPUT Option { global variable }
+
+FUNCTION dollarAdd(x, y)
+    RETURN $ x + y to 2 Decimal points
+
+FUNCTION dollarMinus(x, y)
+    RETURN $ x - y to 2 Decimal points
+
+FUNCTION bankingInfo(file_path)
+    OPEN file_path and read as file
+    accountFile = REPLACE "|||" with "|" in file with DELIMITER = '|'
+    accountType = row[0] in accountFile
+
+CALL startProgram()
+
+FUNCTION search_userID(file_path, userIDInput)
+    OPEN file_path and read as file
+    content = csv.reader(file)              
+    ids = row[3] in content                               
+    WHILE TRUE 
+    TRY
+        idIndex = INDEX ids in userIDInputs                              
+        people = content[idIndex]                                
+        RETURN = people[0:2]                                            
+    EXCEPT ValueError
+        INPUT userIDInput 
+    ENDWHILE
+
+name = search_userID(file_path, userIDInput)  
+
+FUNCTION userAccountOption()                             
+    RETURN JOIN name 
+
+FUNCTION askingOption()
+    WRITE "Welcome " + CALL userAccountOption + ". Please Enter an option"
+    WRITE "1 For Deposits"
+    WRITE "2 For Withdraws" 
+    WRITE "3 For Balance"
+    WRITE "q To Quit"
+    WHILE TRUE
+        CALL globalOption()                                       
+        TRY
+        CASE Option of
+            1: REPLACE 1 with Deposit
+            2: REPLACE 2 with Withdraw
+            3: REPLACE 3 with Balance
+            q: quit()
+        OTHERS
+            startProgram()
+            search_userID("ATM_Exam/main/UserInfo.txt", word)
+            userAccountOption()
+            askingOption()
+            pass
+        ENDCASE                                                        
+        EXCEPT
+            CALL quit()
+
+FUNCTION askingChequeOrSavings()
+    WRITE "Which account do you wish to" + CALL replaceOption + "From"          
+    CALL bankingInfo("ATM_Exam/main/OpeningAccountsData.txt")
+    IF userIDInput is in accountType                                              
+        accountTypeIndex = INDEX userIDInput in accountType                
+        peopleAcc = accountFile[accountTypeIndex]                                 
+        WRITE "1 for peopleAcc[1] (peopleAcc[2])"      
+    ENDIF
+    IF userIDInput is in accountType                                              
+        accountTypeIndex2 = INDEX userIDInput in accountType + 1                    
+        IF accountTypeIndex2 < 6:                                           
+            peopleAcc = accountFile[accountTypeIndex2]                               
+            WRITE "2 for peopleAcc[1] (peopleAcc[2])"       
+        ENDIf
+    ENDIF 
+
+askingOption()
+askingChequeOrSavings()
+
+FUNCTION chequeAndSavings(file_path)
+    CALL bankingInfo(file_path)
+    INPUT ChandSav
+    CASE Option of
+        1: REPLACE "1" with "Deposit"
+        2: REPLACE "2" with "Withdraw"
+        3: REPLACE "3" with "Balance
+    ENDCASE
+
+    CASE ChandSav of
+        1: ChandSave = "1"
+            IF test IN accountType
+                accountTypeIndex = accountType.index userIDInput
+                WRITE people[3]                                                 
+                CALL quit()
+            ENDIF
+
+        2: ChandSave = "2"
+            IF test IN accountType
+                accountTypeIndex = accountType.index userIDInput + 1
+                IF accountTypeIndex < 6
+                    peopleAcc = accountFile[accountTypeIndex2]
+                    WRITE people[3]
+                    CALL quit()
+                ENDIF
+            ENDIF
+    ENDCASE
+
+    WHILE TRUE
+    TRY
+    CASE ChandSav of
+        1: ChandSav is 1
+            IF test in accountType
+                accountTypeIndex = accountType.index userIDInput
+                peopleAcc = accountFile[accountTypeIndex]
+                WRITE "How much do you wish to " + replaceOption2 + "? Balance = " + peopleAcc[3]
+                BREAK
+            ENDIF
+        2: ChandSav is 2
+            IF test in accountType
+                accountTypeIndex2 = accountType.index userIDInput + 1
+                IF accountTypeIndex2 < 6
+                    peopleAcc = accountFile[accountTypeIndex]
+                    WRITE "How much do you wish to " + replaceOption2 + "? Balance = " + peopleAcc[3]
+                    BREAK
+                ENDIF
+            ENDIF 
+        OTHERS
+            startProgram()
+            search_userID("ATM_Exam/main/UserInfo.txt", word)
+            userAccountOption()
+            askingOption()
+            askingChequeOrSavings()
+            chequeAndSavings("ATM_Exam/main/OpeningAccountsData.txt")
+    ENDCASE
+    EXCEPT
+        CALL quit()
+    ENDWHILE
+
+FUNCTION changing_C_Or_S_Account(file_path)
+    CALL bankingInfo(file_path)
+    INPUT userInput 
+    CASE Option of
+        1: Option is 1
+        CASE ChandSav of
+            1: ChandSav is 1
+                IF userIDInput in accountType
+                    accountTypeIndex = INDEX userIDInput in accountType                    
+                    peopleAcc = accountFile[accountTypeIndex]                           
+                    y = peopleAcc[3]                                              
+                    z = [float(y)]                                                
+                    WRITE CALL dollarAdd(z[0] + userInput)                           
+                ENDIF
+            2: ChandSav is 2
+                IF userIDInput IN accountType
+                    accountTypeIndex2 = accountType.index userIDInput + 1                   
+                    IF accountTypeIndex2 < 6                                    
+                        peopleAcc = accountFile[accountTypeIndex2]                      
+                        y = peopleAcc[3]                                            
+                        z = [float(y)]                                                
+                        WRITE CALL dollarAdd(z[0], userInput)                       
+                    ENDIF
+                ENDIF
+        ENDCASE
+
+        2: Option is 2
+        CASE ChandSav of
+            1: ChandSav is 1
+                IF userIDInput IN accountType
+                    accountTypeIndex = INDEX userIDInput in accountType                  
+                    peopleAcc = accountFile[accountTypeIndex]                        
+                    y = peopleAcc[3]                                            
+                    z = [float(y)]                                                
+                    IF z[0] - userInput < 0                               
+                        WRITE "Error"                                           
+                        CALL startProgram()
+                        CALL search_userID("ATM_Exam/main/UserInfo.txt", word)
+                        CALL userAccountOption()
+                        CALL askingOption()
+                        CALL askingChequeOrSavings()
+                        CALL chequeAndSavings("ATM_Exam/main/OpeningAccountsData.txt")
+                        CALL changing_C_Or_S_Account("ATM_Exam/main/OpeningAccountsData.txt")                                   
+                    ELSE                                                       
+                        WRITE CALL dollarMinus(z[0], userInput)              
+                    ENDIF
+                ENDIF
+
+            2: ChandSav is 2
+                IF userIDInput IN accountType
+                    accountTypeIndex2 = INDEX userIDInput in accountType + 1
+                    IF accountTypeIndex2 < 6
+                        peopleAcc = accountFile[accountTypeIndex2]
+                        y = peopleAcc[3]
+                        z = [float(y)]
+                        IF z[0] - userInput < 0
+                            WRITE "Error"                                           
+                            CALL startProgram()
+                            CALL search_userID("ATM_Exam/main/UserInfo.txt", word)
+                            CALL userAccountOption()
+                            CALL askingOption()
+                            CALL askingChequeOrSavings()
+                            CALL chequeAndSavings("ATM_Exam/main/OpeningAccountsData.txt")
+                            CALL changing_C_Or_S_Account("ATM_Exam/main/OpeningAccountsData.txt") 
+                        ENDIF
+                    ENDIF
+                ENDIF
+            3: ChandSav is q
+                CALL quit()
+        ENDCASE
+    ENDCASE
+
+chequeAndSavings("ATM_Exam/main/OpeningAccountsData.txt")
+changing_C_Or_S_Account("ATM_Exam/main/OpeningAccountsData.txt")
+
+def startOverAgain():
+    print("End")
+
+startOverAgain()
