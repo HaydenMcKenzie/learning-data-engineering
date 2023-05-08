@@ -1,9 +1,5 @@
 Import csv
 
-FUNCTION startProgram()
-    WRITE "Please enter your User ID"
-    INPUT userIDInput { global variable }
-
 FUNCTION globalOption
     INPUT Option { global variable }
 
@@ -13,12 +9,20 @@ FUNCTION dollarAdd(x, y)
 FUNCTION dollarMinus(x, y)
     RETURN $ x - y to 2 Decimal points
 
+FUNCTION personName()
+    name = userIDInput if in "ATM_Exam/main/UserInfo.txt"
+
 FUNCTION bankingInfo(file_path)
     OPEN file_path and read as file
     accountFile = REPLACE "|||" with "|" in file with DELIMITER = '|'
     accountType = row[0] in accountFile
 
-CALL startProgram()
+FUNCTION startProgram()
+    WRITE "Please enter your User ID"
+    INPUT userIDInput { global variable }
+    IF userIDInput == "q" THEN
+        Quit
+    ENDIF
 
 FUNCTION search_userID(file_path, userIDInput)
     OPEN file_path and read as file
@@ -33,10 +37,9 @@ FUNCTION search_userID(file_path, userIDInput)
         INPUT userIDInput 
     ENDWHILE
 
-name = search_userID(file_path, userIDInput)  
-
-FUNCTION userAccountOption()                             
-    RETURN JOIN name 
+FUNCTION userAccountOption()
+    name = search_userID(file_path, userIDInput)                              
+    RETURN join name
 
 FUNCTION askingOption()
     WRITE "Welcome " + CALL userAccountOption + ". Please Enter an option"
@@ -53,11 +56,7 @@ FUNCTION askingOption()
             3: REPLACE 3 with Balance
             q: quit()
         OTHERS
-            startProgram()
-            search_userID("ATM_Exam/main/UserInfo.txt", word)
-            userAccountOption()
-            askingOption()
-            pass
+            MainProgram()
         ENDCASE                                                        
         EXCEPT
             CALL quit()
@@ -78,9 +77,6 @@ FUNCTION askingChequeOrSavings()
         ENDIf
     ENDIF 
 
-askingOption()
-askingChequeOrSavings()
-
 FUNCTION chequeAndSavings(file_path)
     CALL bankingInfo(file_path)
     INPUT ChandSav
@@ -95,7 +91,8 @@ FUNCTION chequeAndSavings(file_path)
             IF test IN accountType
                 accountTypeIndex = accountType.index userIDInput
                 WRITE people[3]                                                 
-                CALL quit()
+                CALL MainProgram()
+                PASS
             ENDIF
 
         2: ChandSave = "2"
@@ -104,9 +101,12 @@ FUNCTION chequeAndSavings(file_path)
                 IF accountTypeIndex < 6
                     peopleAcc = accountFile[accountTypeIndex2]
                     WRITE people[3]
-                    CALL quit()
+                    CALL MainProgram()
+                    PASS
                 ENDIF
             ENDIF
+        OTHERS
+            CALL MainProgram()
     ENDCASE
 
     WHILE TRUE
@@ -128,21 +128,18 @@ FUNCTION chequeAndSavings(file_path)
                     BREAK
                 ENDIF
             ENDIF 
+        3: ChandSav is q
+            CALL quit()
         OTHERS
-            startProgram()
-            search_userID("ATM_Exam/main/UserInfo.txt", word)
-            userAccountOption()
-            askingOption()
-            askingChequeOrSavings()
-            chequeAndSavings("ATM_Exam/main/OpeningAccountsData.txt")
+            CALL MainProgram()
     ENDCASE
     EXCEPT
-        CALL quit()
+        CALL MainProgram()
     ENDWHILE
 
 FUNCTION changing_C_Or_S_Account(file_path)
     CALL bankingInfo(file_path)
-    INPUT userInput 
+    userInput = int(input())
     CASE Option of
         1: Option is 1
         CASE ChandSav of
@@ -164,6 +161,8 @@ FUNCTION changing_C_Or_S_Account(file_path)
                         WRITE CALL dollarAdd(z[0], userInput)                       
                     ENDIF
                 ENDIF
+            3: ChandSav is q
+                CALL quit()
         ENDCASE
 
         2: Option is 2
@@ -176,16 +175,12 @@ FUNCTION changing_C_Or_S_Account(file_path)
                     z = [float(y)]                                                
                     IF z[0] - userInput < 0                               
                         WRITE "Error"                                           
-                        CALL startProgram()
-                        CALL search_userID("ATM_Exam/main/UserInfo.txt", word)
-                        CALL userAccountOption()
-                        CALL askingOption()
-                        CALL askingChequeOrSavings()
-                        CALL chequeAndSavings("ATM_Exam/main/OpeningAccountsData.txt")
-                        CALL changing_C_Or_S_Account("ATM_Exam/main/OpeningAccountsData.txt")                                   
+                        CALL MainProgram()                                    
                     ELSE                                                       
                         WRITE CALL dollarMinus(z[0], userInput)              
                     ENDIF
+                ELIF ChandSave == "q"
+                    CALL quit()
                 ENDIF
 
             2: ChandSav is 2
@@ -197,13 +192,7 @@ FUNCTION changing_C_Or_S_Account(file_path)
                         z = [float(y)]
                         IF z[0] - userInput < 0
                             WRITE "Error"                                           
-                            CALL startProgram()
-                            CALL search_userID("ATM_Exam/main/UserInfo.txt", word)
-                            CALL userAccountOption()
-                            CALL askingOption()
-                            CALL askingChequeOrSavings()
-                            CALL chequeAndSavings("ATM_Exam/main/OpeningAccountsData.txt")
-                            CALL changing_C_Or_S_Account("ATM_Exam/main/OpeningAccountsData.txt") 
+                            MainProgram()
                         ENDIF
                     ENDIF
                 ENDIF
@@ -212,10 +201,17 @@ FUNCTION changing_C_Or_S_Account(file_path)
         ENDCASE
     ENDCASE
 
-chequeAndSavings("ATM_Exam/main/OpeningAccountsData.txt")
-changing_C_Or_S_Account("ATM_Exam/main/OpeningAccountsData.txt")
+FUNCTION MainProgram()
+    WHILE TRUE
+    TRY
+        CALL StartProgram()
+        CALL search_userID(file_path, userIDInput)
+        CALL userAccountOption()
+        CALL askingOption()
+        CALL askingChequeOrSavings()
+        CALL chequeAndSavings(file_path) 
+    EXCEPT
+        CALL quit()
+    ENDWHILE
 
-def startOverAgain():
-    print("End")
-
-startOverAgain()
+CALL MainProgram()
