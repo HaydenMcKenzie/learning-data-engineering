@@ -1,12 +1,15 @@
-import ATM_Exam.src.main.accounts.OpenUserInfo as UserInfoFile
+from
 
 """class testingOption():
     @staticmethod
     def __init__():
         pass"""
 
+def askTest():
+    print("moo")
+
 def askingOption():
-    print("Welcome " + UserInfoFile.userAccountOption() + ". Please Enter an Option") # Calls the name from search_userID(file_path, userIDInput)
+    #print("Welcome " + UserInfoFile.userAccountOption() + ". Please Enter an Option") # Calls the name from search_userID(file_path, userIDInput)
     print('1 For Deposits')
     print('2 For Withdraw')
     print('3 For Balance')

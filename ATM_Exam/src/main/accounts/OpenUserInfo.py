@@ -1,5 +1,5 @@
 import csv
-import ATM_Exam.src.main.utils.AskingUserInput as userIDInput
+
 
 def openUserInfoData():
     return "ATM_Exam/data/UserInfo.txt"

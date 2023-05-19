@@ -1,8 +1,5 @@
-import sys
+from ATM_Exam.src.main.messages import AskingOption
 
-sys.path.append(r'ATM_Exam/src/main/messages')
-
-import AskingOption
 
 '''import AskingUserInput as userIDInput
 import EditOpeningAccountsData as OpeningAccData'''
