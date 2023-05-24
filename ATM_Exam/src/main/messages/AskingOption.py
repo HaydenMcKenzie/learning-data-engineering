@@ -1,10 +1,8 @@
-from ATM_Exam.src.main.filehandler.editfiles import removeDelimiter
-from ATM_Exam.src.main.filehandler.editfiles import firstColumn
 from ATM_Exam.src.main.filehandler.printName import gettingName
 
-
-answer = input("Enter ")
-gettingName(answer)
+numberTest = "001"
+name = gettingName(numberTest)
+print(name)
 
 '''
 def test():
@@ -36,4 +34,3 @@ def passingAnswerOption():
         quit() 
     else:  
 '''
-
