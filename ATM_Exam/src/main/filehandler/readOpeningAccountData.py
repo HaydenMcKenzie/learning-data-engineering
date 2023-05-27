@@ -1,11 +1,8 @@
 from ATM_Exam.src.main.filehandler.editfiles import removeDelimiter
-from ATM_Exam.src.main.filehandler.editfiles import firstColumn
+from ATM_Exam.src.main.filehandler.editfiles import idsColumnOpenAccountData
+from ATM_Exam.src.main.filehandler.editfiles import idsColumnUserInfo
 
 
-print("Made an Array: ", removeDelimiter("./data/OpeningAccountsData.txt", "|||"))
-
-
-print("Only first column: ", firstColumn())
 
 '''
 Function listAccounts with variable of userID
@@ -15,10 +12,11 @@ accountIndex = The first line with userID
 return accountIndex 
 '''
 def listAccounts(userID):
-    account = removeDelimiter("./data/OpeningAccountsData.txt", "|||")
-    idIndex = firstColumn().index(userID)
+    account = removeDelimiter("OpeningAccountsData.txt", "|||")
+    idIndex = idsColumnOpenAccountData().index(userID)
     accountIndex = account[idIndex]
     return accountIndex
+
 
 '''
 Function listAccountsForSecondAccount with variable of userID
@@ -31,8 +29,8 @@ except IndexError, then pass
 '''
 def listAccountsForSecondAccount(userID):
     try:
-        account = removeDelimiter("./data/OpeningAccountsData.txt", "|||")
-        idIndex = firstColumn().index(userID) + 1
+        account = removeDelimiter("OpeningAccountsData.txt", "|||")
+        idIndex = idsColumnOpenAccountData().index(userID) + 1
         accountIndex = account[idIndex]
         return accountIndex
     except IndexError:
@@ -40,12 +38,12 @@ def listAccountsForSecondAccount(userID):
 
 
 # The code in the main file.
-answer = input("Enter ")
-print(listAccounts(answer))
-print("1 for", listAccounts(answer)[1], "(" + listAccounts(answer)[2] + ")")
-ifAccountIsThere = listAccountsForSecondAccount(answer)
-if ifAccountIsThere:
-    print("2 for", listAccountsForSecondAccount(answer)[1], "(" + listAccountsForSecondAccount(answer)[2] + ")")
+#answer = input("Enter ")
+#print(listAccounts(answer))
+#print("1 for", listAccounts(answer)[1], "(" + listAccounts(answer)[2] + ")")
+#ifAccountIsThere = listAccountsForSecondAccount(answer)
+#if ifAccountIsThere:
+#    print("2 for", listAccountsForSecondAccount(answer)[1], "(" + listAccountsForSecondAccount(answer)[2] + ")")
 
 
 '''

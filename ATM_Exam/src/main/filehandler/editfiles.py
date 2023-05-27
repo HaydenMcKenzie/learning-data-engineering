@@ -1,4 +1,5 @@
 import csv
+import os
 
 '''
 def readingFile(filepath):
@@ -15,10 +16,11 @@ return accountFile
 
 
 def removeDelimiter(filepath, removeDeL):
-    with open(filepath, 'r') as file:
+    with open('C:\\Users\\Hayden\\PycharmProjects\\DataAcademyATMExam\\ATM_Exam\\src\\main\\filehandler\\data\\' + filepath, 'r') as file:
         accountFile = [item for item in csv.reader((line.replace(removeDeL, "|") for line in file), delimiter='|')]
         return accountFile
 
+#print(removeDelimiter("OpeningAccountsData.txt", "|||"))
 
 '''
 Function firstColumn
@@ -27,15 +29,13 @@ ids = first row in account
 return ids
 '''
 
-
 def idsColumnOpenAccountData():
-    account = removeDelimiter("./data/OpeningAccountsData.txt", "|||")
+    account = removeDelimiter("OpeningAccountsData.txt", "|||")
     ids = [row[0] for row in account]
     return ids
 
 
 def idsColumnUserInfo():
-    account = removeDelimiter("./data/UserInfo.txt", ",")
+    account = removeDelimiter("UserInfo.txt", ",")
     ids = [row[3] for row in account]
     return ids
-
