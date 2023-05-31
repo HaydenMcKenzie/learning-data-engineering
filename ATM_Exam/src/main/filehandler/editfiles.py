@@ -39,3 +39,4 @@ def idsColumnUserInfo():
     account = removeDelimiter("UserInfo.txt", ",")
     ids = [row[3] for row in account]
     return ids
+

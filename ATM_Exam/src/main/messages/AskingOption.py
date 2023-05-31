@@ -23,6 +23,8 @@ def answerOption(Option):
         print("Which account do you wish to see the " + replaceOption + " of:")
     elif Option == "q":
         quit()
+    # else:
+        # restart
 
 def testingGettingChOrSav(UserID):
     print("1 for", listAccounts(UserID)[1], "(" + listAccounts(UserID)[2] + ")")

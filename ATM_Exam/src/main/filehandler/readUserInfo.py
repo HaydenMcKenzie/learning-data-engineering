@@ -1,37 +1,25 @@
 import csv
+from ATM_Exam.src.main.filehandler.editfiles import removeDelimiter
 
-
-def readingFile(filepath):
-    file = open(filepath, 'r')
-    return file.read()
-
-
-def removeDelimiter(filepath, removeDeL):
+'''def removeDelimiter(filepath, removeDeL):
     with open(filepath, 'r') as file:
         accountFile = [item for item in csv.reader((line.replace(removeDeL, "|") for line in file), delimiter='|')]
-        return accountFile
+        return accountFile'''
 
-
-print(removeDelimiter("./data/UserInfo.txt", ","))
 
 def removeDelimiter2():
-    account = removeDelimiter("./data/UserInfo.txt", ",")
+    account = removeDelimiter("UserInfo.txt", ",")
     ids = [row[3] for row in account]
     return ids
 
-print(removeDelimiter2())
 
-def listAccounts(userID):
-    account = removeDelimiter("./data/UserInfo.txt", ",")
+def listAccountsID(userID):
+    account = removeDelimiter("UserInfo.txt", ",")
     idIndex = removeDelimiter2().index(userID)
     accountIndex = account[idIndex]
-    name = accountIndex[0:2]
-    joinedName = " ".join(name)
-    return joinedName
+    return accountIndex
 
-print(listAccounts("001"))
-print(listAccounts("002"))
-print(listAccounts("003"))
+
 
 
 '''

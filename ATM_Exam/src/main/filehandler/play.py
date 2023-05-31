@@ -1,9 +1,8 @@
-from ATM_Exam.src.main.filehandler.data.ReadTheFiles import testingOpeningEx
 
+test = input()
 
-import os
+def name(test):
+    test = input()
+    print(test)
 
-cwd = os.getcwd()  # Get the current working directory (cwd)
-print(cwd)
-files = os.listdir(cwd)  # Get all the files in that directory
-print("Files in %r: %s" % (cwd, files))
+name(test)

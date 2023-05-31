@@ -13,3 +13,5 @@ def testingOpeningEx(filepath, removeDeL):
 # Future referance
 with open(cwd + "\\" + filepath, 'r') as f:
 '''
+
+#not in use
