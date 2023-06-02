@@ -28,6 +28,7 @@ def start():
                 print(Add(chequeOrSavings, userInputAddOrMinus, Option))
             except ValueError:
                 start()
+
         elif UserChoose == "2":
             try:
                 # select and print balance cheque or savings
@@ -41,9 +42,14 @@ def start():
                 minus(chequeOrSavings, userInputAddOrMinus, Option)
             except ValueError:
                 start()
+
         elif UserChoose == "3":
-            chequeOrSavings = input("")
-            getBalance(chequeOrSavings, Option)
+            try:
+                chequeOrSavings = input("")
+                getBalance(chequeOrSavings, Option)
+            except:
+                start()
+
     except TypeError:
         start()
 

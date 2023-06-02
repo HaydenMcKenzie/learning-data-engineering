@@ -8,13 +8,14 @@ def minus(Option, Input, UserID):
         y = listAccounts(UserID)[3]
         z = [float(y)]
         if z[0] - Input < 0:
-            print("Error")
+            print("Error - Wrong Input: Amount entered ($" + str(Input) + ") is greater than amount in account ($" + y + ")")
         else:
             print(dollarMinus(z[0], Input))
     elif Option == "2":
         y = listAccountsForSecondAccount(UserID)[3]
         z = [float(y)]
         if z[0] - Input < 0:
-            print("Error")
+            print("Error - Wrong Input: Amount entered ($" + str(Input) + ") is greater than amount in account ($" + y + ")")
         else:
             print(dollarMinus(z[0], Input))
+

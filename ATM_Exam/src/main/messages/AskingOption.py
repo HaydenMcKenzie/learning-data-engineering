@@ -1,4 +1,4 @@
-from ATM_Exam.src.main.filehandler.printName import gettingName
+from ATM_Exam.src.main.filehandler.PrintName import gettingName
 
 from ATM_Exam.src.main.filehandler.readOpeningAccountData import listAccounts
 from ATM_Exam.src.main.filehandler.readOpeningAccountData import listAccountsForSecondAccount
@@ -26,7 +26,7 @@ def answerOption(Option):
     # else:
         # restart
 
-def testingGettingChOrSav(UserID):
+def GettingChOrSav(UserID):
     print("1 for", listAccounts(UserID)[1], "(" + listAccounts(UserID)[2] + ")")
     ifAccountIsThere = listAccountsForSecondAccount(UserID)
     if ifAccountIsThere:

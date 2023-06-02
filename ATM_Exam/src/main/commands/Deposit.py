@@ -16,4 +16,3 @@ def Add(Option, Input, UserID):
         y = listAccountsForSecondAccount(UserID)[3]
         z = [float(y)]
         return dollarAdd(z[0], Input)
-

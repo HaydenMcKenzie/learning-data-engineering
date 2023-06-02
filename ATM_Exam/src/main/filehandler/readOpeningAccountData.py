@@ -17,7 +17,6 @@ def listAccounts(userID):
     accountIndex = account[idIndex]
     return accountIndex
 
-
 '''
 Function listAccountsForSecondAccount with variable of userID
 try to see if there is a second account
