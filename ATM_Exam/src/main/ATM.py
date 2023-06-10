@@ -1,60 +1,63 @@
-from ATM_Exam.src.main.utils.utilAccountId import userAccountID
 from ATM_Exam.src.main.utils.utilAccountChoice import userAccountChoice
-from ATM_Exam.src.main.commands.Balance import getBalance
-from ATM_Exam.src.main.commands.Deposit import Add
-from ATM_Exam.src.main.commands.Withdrawal import minus
+from ATM_Exam.src.main.utils.utilEditBalance import accountEditBalance
+from ATM_Exam.src.main.messages.AskingOption import askingOption
 
+def userInputStart(Option):
+    """
+    :param Option: User's input for id
+    :return askingOption(Option): grabs user's name base on user id
+    Validates that Options doesn't "q"
+    If it is "q", it quits the program
+    If Option doesn't = 001, 002 or 003, it recall mainProgram()
+    """
+    try:
+        if Option != "q":
+            askingOption(Option)
+        else:
+            try:
+                quit()
+            except TypeError:
+                quit()
+    except TypeError:
+        mainProgram()
 
-def start():
+def userEditAccount(UserChoose, Option):
+    """
+    :param UserChoose: User's input for Deposit, Withdraw, Balance or Quit
+    :param Option: User's input for id
+    :return: Adding, minusing or checking balance of chosen account
+    Makes sure that user inputs are int/floats. If not, recall mainProgram()
+    """
+    try:
+        accountEditBalance(UserChoose, Option)
+    except TypeError:
+        mainProgram()
+    except ValueError:
+        mainProgram()
+
+def mainProgram():
+    """
+    User input for id
+    Print name and prompt user for deposit, withdraw, balance and quit
+    User input for choice
+    Print one or both of the selected ids accounts
+    User input for number
+    Print new balance or account balance
+    Recall mainProgram()
+    """
     # select account
     Option = input("Please enter your UserID ")
-    userAccountID(Option)
+    userInputStart(Option)
 
     # user input for chose of accounts
     UserChoose = input()
     userAccountChoice(UserChoose, Option)
 
-    try:
-        if UserChoose == "1":
-            try:
-                # select and print balance cheque or savings
-                chequeOrSavings = input("")
-                getBalance(chequeOrSavings, Option)
-
-                # user input a float number
-                userInputAddOrMinus = float(input("Enter Number "))
-
-                # print Add
-                print(Add(chequeOrSavings, userInputAddOrMinus, Option))
-            except ValueError:
-                start()
-
-        elif UserChoose == "2":
-            try:
-                # select and print balance cheque or savings
-                chequeOrSavings = input("")
-                getBalance(chequeOrSavings, Option)
-
-                # user input a float number
-                userInputAddOrMinus = float(input("Enter Number "))
-
-                # print minus
-                minus(chequeOrSavings, userInputAddOrMinus, Option)
-            except ValueError:
-                start()
-
-        elif UserChoose == "3":
-            try:
-                chequeOrSavings = input("")
-                getBalance(chequeOrSavings, Option)
-            except:
-                start()
-
-    except TypeError:
-        start()
+    # Edit the account - add, minus or see balance
+    userEditAccount(UserChoose, Option)
 
     # Restart program
-    start()
+    mainProgram()
 
-
-start()
+# Call
+mainProgram()

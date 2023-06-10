@@ -1,8 +1,6 @@
 
 
-def create(fname, lanme, id, accountType, accoutNo, value):
-    account = [fname, lanme, id, accoutNo, accountType, value]
+def create(fname, lname, id, accountType, accountNo, value):
+    account = [fname, lname, id, accountNo, accountType, value]
     return account
-
-
 

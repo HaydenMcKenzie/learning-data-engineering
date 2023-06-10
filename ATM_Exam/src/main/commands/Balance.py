@@ -1,14 +1,12 @@
-from ATM_Exam.src.main.filehandler.readOpeningAccountData import listAccounts
-from ATM_Exam.src.main.filehandler.readOpeningAccountData import listAccountsForSecondAccount
-
+from ATM_Exam.src.main.accounts.AccountUsers import getAccount
+from ATM_Exam.src.main.accounts.AccountUsers import getSecondAccount
 
 
 def getBalance(Option, UserID):
     if Option == "1":
-        print("The balance of " + listAccounts(UserID)[1] + " (" + listAccounts(UserID)[2] + ") is: $" + listAccounts(UserID)[3])
+        print("The balance of " + getAccount(UserID)[3] + " (" + getAccount(UserID)[4] + ") is: $" + getAccount(UserID)[5])
     elif Option == "2":
-        ifAccountIsThere = listAccountsForSecondAccount(UserID)
+        ifAccountIsThere = getSecondAccount(UserID)
         if ifAccountIsThere:
-            print("The balance of " + listAccountsForSecondAccount(UserID)[1] + " (" + listAccountsForSecondAccount(UserID)[2] + ") is: $" + listAccountsForSecondAccount(UserID)[3])
+            print("The balance of " + getSecondAccount(UserID)[3] + " (" + getSecondAccount(UserID)[4] + ") is: $" + getSecondAccount(UserID)[5])
 
-getBalance("1", "001")

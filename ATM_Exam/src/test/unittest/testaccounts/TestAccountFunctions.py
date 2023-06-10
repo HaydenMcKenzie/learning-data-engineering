@@ -1,6 +1,6 @@
 import unittest
-from ATM_Exam.src.main.accounts.AccountFunctions import getAccount
-from ATM_Exam.src.main.accounts.AccountFunctions import getSecondAccount
+from ATM_Exam.src.main.accounts.AccountUsers import getAccount
+from ATM_Exam.src.main.accounts.AccountUsers import getSecondAccount
 
 def testGetAccount():
     return getAccount("001")

@@ -1,7 +1,7 @@
 import unittest
 from ATM_Exam.src.main.filehandler.readOpeningAccountData import listAccounts
 from ATM_Exam.src.main.filehandler.readOpeningAccountData import listAccountsForSecondAccount
-from ATM_Exam.src.main.accounts.CreateAccount import testCreate
+
 
 
 class TestingAccountsAreCorrect(unittest.TestCase):
