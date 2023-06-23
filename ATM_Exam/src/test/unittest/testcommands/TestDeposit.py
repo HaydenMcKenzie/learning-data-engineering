@@ -6,7 +6,6 @@ def testAdd():
 
 
 class testingDeposit(unittest.TestCase):
-    # Test John's Account Deposit
     def test_Deposit_Function(self):
         self.assertEqual(testAdd(), "$600.90", "Should be $600.90")
 

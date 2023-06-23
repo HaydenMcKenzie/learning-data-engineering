@@ -17,3 +17,5 @@ def userAccountChoice(input, Option):
             printAccountOptions(Option)
     except ValueError:
         userAccountChoice(input, Option)
+
+userAccountChoice("1", "001")

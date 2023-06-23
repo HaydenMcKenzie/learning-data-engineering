@@ -22,6 +22,7 @@ def accountAdd(Option):
     # print Add
     print(Add(chequeOrSavings, userInputAddOrMinus, Option))
 
+accountAdd("001")
 
 def accountMinus(Option):
     # select and print balance cheque or savings

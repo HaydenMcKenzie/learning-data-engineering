@@ -10,7 +10,6 @@ def testDollarMinus():
 
 
 class testingWithdrawl(unittest.TestCase):
-    # Test John's Account Withdrawal
     def test_DollarAdd_Function(self):
         self.assertEqual(testDollarAdd(), "$110.00", "Should be 110")
 

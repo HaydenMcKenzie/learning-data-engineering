@@ -23,4 +23,3 @@ def answerOption(Option):
     elif Option == "q":
         quit()
 
-

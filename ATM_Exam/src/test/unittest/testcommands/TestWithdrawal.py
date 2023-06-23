@@ -5,9 +5,7 @@ def testMinus():
     return minus("1", 100, "001")
 
 
-
 class testingWithdrawl(unittest.TestCase):
-    # Test John's Account Withdrawal
     def test_Withdrawal_Function(self):
         self.assertEqual(testMinus(), None, "Should be $400.90")
 
