@@ -1,0 +1,22 @@
+IMPORT answerOption FROM AskingOption.py
+IMPORT printAccountOptions FROM AccountUsers.py
+
+FUNCTION userAccountChoice
+    TRY
+        IF input is "1" THEN
+            CALL answerOption
+            CALL printAccountOptions
+        ELIF input is "2"
+            CALL answerOption
+            CALL printAccountOptions
+        ELIF input is "3"
+            CALL answerOption
+            CALL printAccountOptions
+        ELIF input is "q"
+            CALL answerOption
+            CALL printAccountOptions
+        ENDIF
+    EXCEPT TypeError
+        CALL userAccountChoice
+    EXCEPT ValueError
+        CALL userAccountChoice

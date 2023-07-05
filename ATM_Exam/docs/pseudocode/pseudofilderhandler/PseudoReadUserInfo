@@ -1,0 +1,11 @@
+IMPORT removeDelimiter FROM EditFiles.py
+
+FUNCTION firstColumnFromUserInfo()
+    removeDelimiter(UserInfo.txt)
+    row[0] for row in account
+    RETURN ids
+
+FUNCTION listAccountID
+    removeDelimiter(UserInfo.txt)
+    index TheUserID in firstColumnFromUserInfo
+    return accountIndex

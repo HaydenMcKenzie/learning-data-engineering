@@ -1,0 +1,11 @@
+IMPORT csv
+
+FUNCTION removeDelimiter
+    WITH OPEN('C:\\Users\\Hayden\\PycharmProjects\\DataAcademyATMExam\\ATM_Exam\\src\\main\\filehandler\\data\\' + filepath) as file
+        check item for item and replace RemoveDeL with | in file with delimiter as |
+        RETURN accountFile
+
+FUNCTION idsColumnOpenAccountData()
+    removeDelimiter(OpeningAccountData.txt)
+    row[0] for row in account
+    RETURN ids

@@ -1,11 +1,11 @@
-from ATM_Exam.src.main.filehandler.editfiles import removeDelimiter
-from ATM_Exam.src.main.filehandler.readUserInfo import firstColumnFromUserInfo
-
+from ATM_Exam.src.main.filehandler.EditFiles import removeDelimiter
+from ATM_Exam.src.main.filehandler.ReadUserInfo import firstColumnFromUserInfo
+import os, sys
 
 def gettingName(userID):
     """
-    :param userID: User Input
-    :return: based on userID, it prints first name and last name from UserInfo.txt
+    :param userID: User Input from ATM.py - Either 001, 002 or 003
+    :return: based on userID, it receives first name and last name from UserInfo.txt and joins them
     """
     try:
         account = removeDelimiter("UserInfo.txt", ",")
@@ -17,18 +17,3 @@ def gettingName(userID):
     except:
         pass
 
-
-
-'''
-answer = input("Enter ")
-print(gettingName(answer))
-
-
-
-def test():
-    print("Welcome ", gettingName(answer), ". Please Enter an Option")
-    print('1 For Deposits')
-    print('2 For Withdraw')
-    print('3 For Balance')
-    print('q To Quit')
-'''

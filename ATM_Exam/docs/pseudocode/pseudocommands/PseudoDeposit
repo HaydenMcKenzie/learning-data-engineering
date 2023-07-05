@@ -1,0 +1,13 @@
+IMPORT dollarAdd FROM FloatToDollar.py
+IMPORT getAccount FROM AccountUsers.py
+IMPORT getSecondAccount FROM AccountUsers.py
+
+
+FUNCTION Add
+    IF option is "1" THEN
+        Turn AccountBalance from string to float then plus it with input
+        RETURN dollarAdd
+    ELIF option is "2"
+        Turn AccountBalance from string to float then plus it with input
+        RETURN dollarAdd
+    ENDIF

@@ -1,0 +1,11 @@
+IMPORT getAccount FROM AccountUsers.py
+IMPORT getSecondAccount FROM AccountUser.py
+
+FUNCTION getBalance
+    IF option is "1" THEN
+        PRINT "The balance of AccountType (AccountNumber) is: AccountBalance"
+    ELIF option is "2" THEN
+        IF ifAccountIsThere THEN
+            PRINT "The balance of AccountType (AccountNumber) is: AccountBalance"
+        ENDIF
+    ENDIF

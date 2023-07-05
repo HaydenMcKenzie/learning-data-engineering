@@ -1,50 +1,44 @@
-from ATM_Exam.src.main.utils.utilAccountChoice import userAccountChoice
-from ATM_Exam.src.main.utils.utilEditBalance import accountEditBalance
+from ATM_Exam.src.main.utils.UtilAccountChoice import userAccountChoice
+from ATM_Exam.src.main.utils.UtilEditBalance import accountEditBalance
 from ATM_Exam.src.main.messages.AskingOption import askingOption
+from ATM_Exam.src.main.messages.QuitingMessage import printingBalancesOfAccounts
 
-def userInputStart(Option):
+def userInputStart(option):
     """
-    :param Option: User's input for id
-    :return askingOption(Option): grabs user's name base on user id
-    Validates that Options doesn't "q"
-    If it is "q", it quits the program
-    If Option doesn't = 001, 002 or 003, it recall mainProgram()
+    :param option: User Input from mainProgram() - Either 001, 002, or 003
+    :return: Prints first message with name that corresponds with the userID. If incorrect inputs, restart
     """
     try:
-        if Option != "q":
-            askingOption(Option)
+        if option != "q":
+            askingOption(option)
         else:
             try:
+                printingBalancesOfAccounts()
                 quit()
             except TypeError:
+                printingBalancesOfAccounts()
                 quit()
     except TypeError:
+        print("Error - Wrong Input: Please enter valid UserID")
         mainProgram()
 
-def userEditAccount(UserChoose, Option):
+def userEditAccount(userChoose, userID, chequeOrSavings):
     """
-    :param UserChoose: User's input for Deposit, Withdraw, Balance or Quit
-    :param Option: User's input for id
-    :return: Adding, minusing or checking balance of chosen account
-    Makes sure that user inputs are int/floats. If not, recall mainProgram()
+    :param userChoose: User Input from mainProgram() - Either 1, 2, or 3
+    :param userID: User Input from mainProgram() - Either 001, 002, or 003
+    :param chequeOrSavings: User Input from ATM.py - Either 1 or 2
+    :return: Adding, minusing or checking balance of chosen account. If incorrect inputs, restart
     """
     try:
-        accountEditBalance(UserChoose, Option)
+        accountEditBalance(userChoose, userID, chequeOrSavings)
     except TypeError:
+        print("Error - Wrong Input: Please enter valid integer")
         mainProgram()
     except ValueError:
+        print("Error - Wrong Input: Please enter valid integer")
         mainProgram()
 
 def mainProgram():
-    """
-    User input for id
-    Print name and prompt user for deposit, withdraw, balance and quit
-    User input for choice
-    Print one or both of the selected ids accounts
-    User input for number
-    Print new balance or account balance
-    Recall mainProgram()
-    """
     # select account
     Option = input("Please enter your UserID ")
     userInputStart(Option)
@@ -54,7 +48,8 @@ def mainProgram():
     userAccountChoice(UserChoose, Option)
 
     # Edit the account - add, minus or see balance
-    userEditAccount(UserChoose, Option)
+    chequeOrSavings = input()
+    userEditAccount(UserChoose, Option, chequeOrSavings)
 
     # Restart program
     mainProgram()

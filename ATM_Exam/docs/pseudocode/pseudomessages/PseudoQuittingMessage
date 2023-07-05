@@ -1,0 +1,13 @@
+IMPORT gettingName FROM PrintName.py
+IMPORT getAccount FROM AccountUsers.py
+IMPORT getSecondAccount FROM AccountUsers.py
+
+FUNCTION printingBalancesOfAccounts
+    PRINT "For John Smith:"
+    PRINT his first account details
+    PRINT his second account details
+    PRINT "For Leanne Smith:"
+    PRINT her first account details
+    PRINT her second account details
+    PRINT "For Kim Kash"
+    PRINT her account details

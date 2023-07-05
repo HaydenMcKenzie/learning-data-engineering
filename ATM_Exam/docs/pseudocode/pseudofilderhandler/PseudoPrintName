@@ -1,0 +1,12 @@
+IMPORT removeDelimiter FROM EditFiles.py
+IMPORT firstColumnFromUserInfo FROM ReadUserInfo.py
+
+FUNCTION gettingName
+    TRY
+        remove delimiters in UserInfo.txt
+        index userID in firstColumnFromUserInfo
+        retrieve first name and last name from accountIndex
+        join both indexes
+        RETURN joinedName
+    EXCEPT
+        PASS

@@ -1,0 +1,17 @@
+Import listAccountInfo FROM ReadUserInfo.py
+Import listAccounts FROM ReadOpeningAccountData.py
+Import listAccountsForSecondAccount FROM ReadOpeningAccountData.py
+
+FUNCTION getAccount
+    RETURN first name, last name, user Id, account number, account type, account balance
+
+FUNCTION getSecondAccount
+    IF AccountIsThere THEN
+        RETURN first name, last name, user Id, account number, account type, account balance
+    ENDIF
+
+FUNCTION printAccountOptions
+    PRINT "1 for AccountType (AccountNumber)"
+    IF AccountIsThere THEN
+        "PRINT 2 for AccountType (AccountNumber)"
+    ENDIF

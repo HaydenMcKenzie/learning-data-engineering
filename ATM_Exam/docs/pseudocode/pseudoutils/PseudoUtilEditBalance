@@ -1,0 +1,54 @@
+IMPORT getBalance FROM Balance.py
+IMPORT Add FROM Deposit.py
+IMPORT minus FROM Withdrawal.py
+
+FUNCTION accountBalance
+    INPUT chequeOrSavings
+    CALL getBalance
+
+FUNCTION editNewBalanceForFile
+    OPEN OpeningAccountsData.txt AS file
+    READ file
+    IF account is "1" THEN
+        Grab first account balance
+        Replace balance with new balance
+    ELIF account is "2"
+        Grab second account balance
+        Replace balance with new balance
+    OPEN OpeningAccountsData.txt AS file
+    WRITE file with new balance
+
+FUNCTION accountAdd
+    INPUT chequeOrSavings
+    CALL getBalance
+    FLOAT INPUT userInputAddOrMinus
+    Add userInputAddOrMinus with account balance
+    PRINT "Your New Balance is: $" + new number
+    CALL editNewBalanceForFile
+    
+FUNCTION accountMinus
+    INPUT chequeOrSavings
+    CALL getBalance
+    FLOAT INPUT userInputAddOrMinus
+    TRY
+        IF newBalance > 0
+            CALL editNewBalanceForFile
+            PRINT "Your new balance is: $" + new number"
+        ELSE
+            IF chequeOrSavings is "1" THEN
+               PRINT "Error - Wrong Input: Amount entered (account entered) is greater than amount in account (Account balance)
+            ELIF chequeOrSavings is "2"
+               PRINT "Error - Wrong Input: Amount entered (account entered) is greater than amount in account (Account balance)"
+            ENDIF
+        ENDIF
+    EXCEPT ValueError
+        PRINT "Error - Wrong Input: Amount entered (account entered) is greater than amount in account (Account balance)""
+
+FUNCTION accountEditBalance
+    IF UserChoose is "1" THEN
+        accountAdd
+    ELIF UserChoose is "2"
+        accountMinus
+    ELIF UserChoose is "3"
+        accountBalance
+    ENDIF
