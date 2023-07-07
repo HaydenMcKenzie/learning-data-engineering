@@ -15,7 +15,7 @@ def accountBalance(userID):
 
 
 def editNewBalanceForFile(userID, account, newbal):
-    with open("C:\\Users\\Hayden\\PycharmProjects\\DataAcademyATMExam\\ATM_Exam\\src\\main\\filehandler\\data\\OpeningAccountsData.txt", 'r') as file:
+    with open("/ATM_Exam/data\\OpeningAccountsData.txt", 'r') as file:
         filedata = file.read()
 
     if account == "1":
@@ -25,7 +25,7 @@ def editNewBalanceForFile(userID, account, newbal):
         balance = getSecondAccount(userID)[5]
         filedata = filedata.replace(balance, newbal)
 
-    with open("C:\\Users\\Hayden\\PycharmProjects\\DataAcademyATMExam\\ATM_Exam\\src\\main\\filehandler\\data\\OpeningAccountsData.txt", "w") as file:
+    with open("/ATM_Exam/data\\OpeningAccountsData.txt", "w") as file:
         file.write(filedata)
 
 

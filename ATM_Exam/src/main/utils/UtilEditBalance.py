@@ -30,7 +30,7 @@ def editNewBalanceForFile(userID, account, newBal):
     :param newBal: New number - adding old balance with user input to make new balance
     :return: The balance (e.g. 500.90) changes to newBal
     """
-    with open("C:\\Users\\Hayden\\PycharmProjects\\DataAcademyATMExam\\ATM_Exam\\src\\main\\filehandler\\data\\OpeningAccountsData.txt", 'r') as file:
+    with open("../../../data/OpeningAccountsData.txt", 'r') as file:
         filedata = file.read()
 
     if account == "1":
@@ -40,7 +40,7 @@ def editNewBalanceForFile(userID, account, newBal):
         balance = getSecondAccount(userID)[5]
         filedata = filedata.replace(balance, newBal)
 
-    with open("C:\\Users\\Hayden\\PycharmProjects\\DataAcademyATMExam\\ATM_Exam\\src\\main\\filehandler\\data\\OpeningAccountsData.txt", "w") as file:
+    with open("../../../data/OpeningAccountsData.txt", "w") as file:
         file.write(filedata)
 
 

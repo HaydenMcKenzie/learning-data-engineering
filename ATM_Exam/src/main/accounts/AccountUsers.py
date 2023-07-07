@@ -11,7 +11,6 @@ def getAccount(accountID):
     return listAccountsID(accountID)[0], listAccountsID(accountID)[1], listAccounts(accountID)[0], \
            listAccounts(accountID)[1], listAccounts(accountID)[2], listAccounts(accountID)[3]
 
-
 def getSecondAccount(accountID):
     """
     :param accountID: User input

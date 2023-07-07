@@ -2,12 +2,14 @@ from ATM_Exam.src.main.filehandler.EditFiles import removeDelimiter
 
 
 
-def firstColumnFromUserInfo():
+def firstColumnFromUserInfo(DATAPATH):
     """
     :return: Returns the first column of UserInfo.txt
     """
-    account = removeDelimiter("UserInfo.txt", ",")
+    account = removeDelimiter(DATAPATH + "UserInfo.txt", ",")
+    print(account)
     ids = [row[3] for row in account]
+    print(ids)
     return ids
 
 

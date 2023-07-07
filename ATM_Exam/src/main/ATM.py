@@ -3,6 +3,7 @@ from ATM_Exam.src.main.utils.UtilEditBalance import accountEditBalance
 from ATM_Exam.src.main.messages.AskingOption import askingOption
 from ATM_Exam.src.main.messages.QuitingMessage import printingBalancesOfAccounts
 
+
 def userInputStart(option):
     """
     :param option: User Input from mainProgram() - Either 001, 002, or 003
@@ -10,7 +11,7 @@ def userInputStart(option):
     """
     try:
         if option != "q":
-            askingOption(option)
+            askingOption(option) # Welcome jOin
         else:
             try:
                 printingBalancesOfAccounts()
