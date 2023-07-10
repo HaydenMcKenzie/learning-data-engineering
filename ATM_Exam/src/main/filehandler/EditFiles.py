@@ -10,11 +10,11 @@ def removeDelimiter(filename, removeDeL):
         accountFile = [item for item in csv.reader((line.replace(removeDeL, "|") for line in file), delimiter='|')]
         return accountFile
 
-def idsColumnOpenAccountData():
+def idsColumnOpenAccountData(DATAPATH):
     """
     :return: The first column in OpeningAccountData.txt
     """
-    account = removeDelimiter("OpeningAccountsData.txt", "|||")
+    account = removeDelimiter(DATAPATH + "OpeningAccountsData.txt", "|||")
     ids = [row[0] for row in account]
     return ids
 
