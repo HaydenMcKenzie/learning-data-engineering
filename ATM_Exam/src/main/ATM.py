@@ -9,19 +9,20 @@ def userInputStart(option):
     :param option: User Input from mainProgram() - Either 001, 002, or 003
     :return: Prints first message with name that corresponds with the userID. If incorrect inputs, restart
     """
-    try:
-        if option != "q":
-            askingOption(option) # Welcome jOin
-        else:
-            try:
-                printingBalancesOfAccounts()
-                quit()
-            except TypeError:
-                printingBalancesOfAccounts()
-                quit()
-    except TypeError:
+    print(option)
+    if option != "q":
+        askingOption(option)  # Welcome jOin
+    else:
+        print(option)
+        """try:
+            printingBalancesOfAccounts()
+            quit()
+        except TypeError:
+            printingBalancesOfAccounts()
+            quit()"""
+    """except TypeError:
         print("Error - Wrong Input: Please enter valid UserID")
-        mainProgram()
+        mainProgram()"""
 
 def userEditAccount(userChoose, userID, chequeOrSavings):
     """
@@ -42,7 +43,8 @@ def userEditAccount(userChoose, userID, chequeOrSavings):
 def mainProgram():
     # select account
     Option = input("Please enter your UserID ")
-    userInputStart(Option)
+    askingOption(Option)
+    """userInputStart(Option)
 
     # user input for chose of accounts
     UserChoose = input()
@@ -54,6 +56,7 @@ def mainProgram():
 
     # Restart program
     mainProgram()
-
+"""
 # Call
-mainProgram()
+Option = input("Please enter your UserID ")
+askingOption(Option)

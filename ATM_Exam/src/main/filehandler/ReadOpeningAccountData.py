@@ -3,15 +3,14 @@ from ATM_Exam.src.main.filehandler.EditFiles import idsColumnOpenAccountData
 
 
 
-DATAPATH = "../../../data/"
+DATAPATH = "../../../data/OpeningAccountData.txt"
 
-def listAccounts(DATAPATH, userID):
+def listAccounts(filename, userID):
     """
     :param userID: User Input from ATM.py - Either 001, 002 or 003
     :return: Depending on userID, removing ||| and retrieves first account from OpeningAccountsData.txt
     """
-    account = removeDelimiter(DATAPATH + "OpeningAccountsData.txt", "|||")
-    print(account)
+    account = removeDelimiter(filename, "|||")
     idIndex = idsColumnOpenAccountData(DATAPATH).index(userID)
     accountIndex = account[idIndex]
     return accountIndex

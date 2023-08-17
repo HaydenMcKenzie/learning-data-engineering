@@ -1,5 +1,0 @@
-FUNCTION dollarAdd(x, y)
-    RETURN f'{x + y:.2f}
-
-FUNCTION dollarMinus(x, y)
-    RETURN f'{x - y:.2f}

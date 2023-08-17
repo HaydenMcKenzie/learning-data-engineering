@@ -2,14 +2,17 @@ from ATM_Exam.src.main.filehandler.ReadUserInfo import listAccountsID
 from ATM_Exam.src.main.filehandler.ReadOpeningAccountData import listAccounts
 from ATM_Exam.src.main.filehandler.ReadOpeningAccountData import listAccountsForSecondAccount
 
+DATAPATH = "../../../data/UserInfo.txt"
 
-def getAccount(accountID):
+def getAccount(filename, accountID):
     """
     :param accountID: User Input
     :return: Retrieves the first account data
     """
-    return listAccountsID(accountID)[0], listAccountsID(accountID)[1], listAccounts(accountID)[0], \
-           listAccounts(accountID)[1], listAccounts(accountID)[2], listAccounts(accountID)[3]
+    return listAccountsID(filename, accountID)[0], listAccountsID(filename, accountID)[1], listAccounts(filename, accountID)[0], \
+           listAccounts(filename, accountID)[1], listAccounts(filename, accountID)[2], listAccounts(filename, accountID)[3]
+
+print(getAccount(DATAPATH, "001"))
 
 def getSecondAccount(accountID):
     """
