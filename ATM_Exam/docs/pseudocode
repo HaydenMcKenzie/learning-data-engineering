@@ -1,0 +1,35 @@
+
+Setup
+    Read in files
+        OpeningAccountsData.txt
+        UserInfo.txt
+
+    Create BankAccounts
+        from OpeningAccounts.txt
+    Create Clients
+        from UserInfo.txt
+
+Interact with Client
+    WHILE User ID not given
+        Prompt User for User ID
+        Validate User ID
+    END WHILE
+
+    While User hasn't entered 'q'
+        Prompt for account number
+        Validate account number
+        If valid account number
+            Display with Welcome message
+            Display options
+                1. For Deposit
+                2. For Withdrawal
+                3. For Balance
+                q. To Quit
+        Else
+            Show unknown user message
+            Restart - prompt user for user id
+        END IF
+    END WHILE
+
+Write out account details
+Exit
